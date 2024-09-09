@@ -8,16 +8,33 @@
 import SwiftUI
 
 struct ContentView: View {
+    let people: [Person] = [
+        .init(name: "Bert", hobby: "baseball", hobbyImage: "figure.baseball"),
+        .init(name: "ernie", hobby: "skyDive", hobbyImage: nil),
+        .init(name: "Big Bird", hobby: "Swimming", hobbyImage: "figure.cricket"),
+        .init(name: "Cookie", hobby: "SkateBoard", hobbyImage: nil),
+    ]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        List {
+            ForEach(people) { person in
+                rowItem(persoon: person)
+                 .listRowSeparator(.hidden)
+            }
         }
-        .padding()
     }
 }
+
+
+
+struct Person: Identifiable {
+    var id = UUID()
+    let name: String
+    let hobby: String?
+    let hobbyImage: String?
+    
+}
+
 
 #Preview {
     ContentView()
